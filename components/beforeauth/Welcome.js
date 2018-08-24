@@ -17,13 +17,19 @@ export default class Welcome extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      fontLoaded: false
     };
   }
 
-  componentDidMount() {
-    this.setState({ loading: false });
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      Sans: require("../../assets/fonts/SourceSansPro-Bold.ttf"),
+      Montserrat: require("../../assets/fonts/Montserrat-Medium.ttf"),
+      Abril: require("../../assets/fonts/AbrilFatface-Regular.ttf")
+    });
+    this.setState({ fontLoaded: true });
   }
+
   _onSignUpPress() {
     this.props.navigation.navigate("SignUp");
     console.log("Navigation to Sign Up Successful");
@@ -44,7 +50,9 @@ export default class Welcome extends Component {
           <StatusBar hidden={true} />
           <View style={styles.container}>
             <View style={{ marginBottom: 40, marginTop: 40 }}>
-              <Text style={styles.hello}>Hello</Text>
+              {this.state.fontLoaded ? (
+                <Text style={styles.hello}>Hello</Text>
+              ) : null}
             </View>
 
             <View
@@ -52,14 +60,22 @@ export default class Welcome extends Component {
                 marginTop: 30
               }}
             >
-              <Text style={{ color: "white", fontSize: 18 }}>WELCOME!</Text>
+              {this.state.fontLoaded ? (
+                <Text
+                  style={{ color: "white", fontSize: 30, fontFamily: "Abril" }}
+                >
+                  Welcome!
+                </Text>
+              ) : null}
             </View>
 
             <View style={{ marginLeft: 45, marginRight: 45 }}>
-              <Text style={styles.introtxt}>
-                We are a Creative agency which wishes to change the world by
-                automating simple tasks.
-              </Text>
+              {this.state.fontLoaded ? (
+                <Text style={styles.introtxt}>
+                  We are a Creative agency which wishes to change the world by
+                  automating simple tasks.
+                </Text>
+              ) : null}
             </View>
           </View>
 
@@ -93,7 +109,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   signUpbtn: {
-    //   marginTop: 30,
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
@@ -114,12 +129,13 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 18,
-    marginTop: 20
+    marginTop: 20,
+    fontFamily: "Montserrat",
+    lineHeight: 30
   },
   hello: {
     color: "white",
-    fontSize: 55,
-    fontWeight: "bold"
-    // fontFamily: 'sourceSans',
+    fontSize: 70,
+    fontFamily: "Sans"
   }
 });
