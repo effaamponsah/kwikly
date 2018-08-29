@@ -1,21 +1,18 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Drawer from "../navigation/Drawer";
-import TabNav from "../navigation/TabNav";
 
-// import Drawer from "../navigation/MainNav";
-
-class Home extends React.Component {
-  static navigationOptions = {
-    header: null
-  };
+export default class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    return <TabNav />;
+    return (
+      <View style={styles.container}>
+        <Text> This is the checkout Screen </Text>
+      </View>
+    );
   }
 }
 
@@ -26,4 +23,3 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
-export default Home;

@@ -4,7 +4,9 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
-  TouchableOpacity
+  TouchableOpacity,
+  Button,
+  StatusBar
 } from "react-native";
 import {
   Container,
@@ -14,7 +16,6 @@ import {
   Icon,
   Body,
   Title,
-  Button,
   Right,
   Badge
 } from "native-base";
@@ -22,23 +23,37 @@ import {
 class Explore extends React.Component {
   static navigationOptions = {
     // header: null
-    // title: 'Hello'
+    title: "Explore"
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      fontLoaded: false
+      fontLoaded: false,
+      items: 0
     };
   }
 
   _onMenuPress = () => {
     this.props.navigation.toggleDrawer();
+    console.log("Drawer btn pressed");
   };
 
   _onCartIconPress = () => {
     this.props.navigation.navigate("Cart");
+    // this.props.navigation.navigate("Cart");
+    console.log("Cart btn pressed");
   };
+
+  _addItem = () => {
+    this.setState({
+      items: this.state.items + 1
+    });
+  };
+
+  dummy = () => {
+    this.props.navigation.navigate('Dummy')
+  }
   async componentWillMount() {
     await Expo.Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -71,7 +86,13 @@ class Explore extends React.Component {
           </Body>
 
           <Right style={{ marginRight: 10 }}>
-            <Icon name="basket" />
+            {this.state.items ? (
+              <Badge>
+                <Text>{this.state.items}</Text>
+              </Badge>
+            ) : null}
+
+            <Icon name="basket" onPress={this._onCartIconPress} />
           </Right>
         </Header>
 
@@ -82,7 +103,10 @@ class Explore extends React.Component {
             justifyContent: "center"
           }}
         >
+          <StatusBar barStyle="dark-content" />
           <Text>Hello world</Text>
+          <Button title="add items" onPress={this._addItem} />
+          <Button title="Dummy" onPress={this.dummy} />
         </Content>
       </Container>
     );

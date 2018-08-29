@@ -1,24 +1,23 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Welcome from './components/beforeauth/Welcome';
-import MainNav from './components/navigation/MainNav';
-import SignUp from './components/beforeauth/SignUp';
-
-
+import React from "react";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
+import Welcome from "./components/beforeauth/Welcome";
+import MainNav from "./components/navigation/MainNav";
+import SignUp from "./components/beforeauth/SignUp";
+import Dummy from "./components/afterauth/Cards";
+import ResCard from "./components/afterauth/ResCards";
 
 export default class App extends React.Component {
   render() {
-    return (
-      <MainNav />
-    );
+    return <MainNav />;
+    // <Dummy />
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });
