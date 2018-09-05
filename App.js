@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Welcome from "./components/beforeauth/Welcome";
 import MainNav from "./components/navigation/MainNav";
 import SignUp from "./components/beforeauth/SignUp";
-import Dummy from "./components/afterauth/Cards";
 import ResCard from "./components/afterauth/ResCards";
 
 export default class App extends React.Component {
