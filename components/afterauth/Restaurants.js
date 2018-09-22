@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { Card, CardItem, Left, Thumbnail, Body } from "native-base";
+import { Card, CardItem, Left, Thumbnail, Body, Icon } from "native-base";
 import { ResCard } from "./ResCards";
 import Home from "./Home";
 import Cards from "./Cards";
 
 class Restaurants extends React.Component {
   static navigationOptions = {
-    title: "Hello"
+    title: "Restaurants",
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="restaurant" style={{ color: tintColor }} />
+    )
   };
 
   constructor(props) {

@@ -8,15 +8,21 @@ import Explore from "../afterauth/Explore";
 import Restaurants from "../afterauth/Restaurants";
 import Dummy from "../afterauth/Cards";
 import Checkout from "../afterauth/Checkout";
+import Cards from "../afterauth/Cards";
 
 export default createStackNavigator({
-  Welcome: Welcome,
+  Welcome: {
+    screen: Welcome,
+  },
   SignUp: SignUp,
   Login: Login,
-  Home: Home,
+  Home: {
+    screen: Home,
+  },
   // Cart: Cart,
   Explore: Explore,
   Restaurants: Restaurants,
   Dummy: Dummy,
-  Checkout: Checkout
+  Checkout: Checkout,
+  Cards: Cards
 });

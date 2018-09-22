@@ -23,7 +23,11 @@ import {
 class Explore extends React.Component {
   static navigationOptions = {
     // header: null
-    title: "Explore"
+    title: "Explore",
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="search" style={{ color: tintColor }} />
+    ),
+    headerLeft: null
   };
 
   constructor(props) {
@@ -52,8 +56,8 @@ class Explore extends React.Component {
   };
 
   dummy = () => {
-    this.props.navigation.navigate('Dummy')
-  }
+    this.props.navigation.navigate("Dummy");
+  };
   async componentWillMount() {
     await Expo.Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -63,52 +67,55 @@ class Explore extends React.Component {
   }
   render() {
     return (
-      <Container>
-        <Header style={{ backgroundColor: "#fff", height: 70, paddingTop: 15 }}>
-          <Left>
-            <Icon name="menu" onPress={this._onMenuPress} />
-          </Left>
+      // <Container>
+      //   <Header style={{ backgroundColor: "#fff", height: 70, paddingTop: 15 }}>
+      //     <Left>
+      //       <Icon name="menu" onPress={this._onMenuPress} />
+      //     </Left>
 
-          <Body
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              alignContent: "center"
-            }}
-          >
-            {/* <Title>Hello</Title> */}
-            {this.state.fontLoaded ? (
-              <Title style={{ color: "#000" }}>Header</Title>
-            ) : (
-              <ActivityIndicator size="small" />
-            )}
-          </Body>
+      //     <Body
+      //       style={{
+      //         flex: 1,
+      //         alignItems: "center",
+      //         justifyContent: "center",
+      //         alignContent: "center"
+      //       }}
+      //     >
+      //       {/* <Title>Hello</Title> */}
+      //       {this.state.fontLoaded ? (
+      //         <Title style={{ color: "#000" }}>Header</Title>
+      //       ) : (
+      //         <ActivityIndicator size="small" />
+      //       )}
+      //     </Body>
 
-          <Right style={{ marginRight: 10 }}>
-            {this.state.items ? (
-              <Badge>
-                <Text>{this.state.items}</Text>
-              </Badge>
-            ) : null}
+      //     <Right style={{ marginRight: 10 }}>
+      //       {this.state.items ? (
+      //         <Badge>
+      //           <Text>{this.state.items}</Text>
+      //         </Badge>
+      //       ) : null}
 
-            <Icon name="basket" onPress={this._onCartIconPress} />
-          </Right>
-        </Header>
+      //       <Icon name="basket" onPress={this._onCartIconPress} />
+      //     </Right>
+      //   </Header>
 
-        <Content
-          contentContainerStyle={{
-            alignItems: "center",
-            flex: 1,
-            justifyContent: "center"
-          }}
-        >
-          <StatusBar barStyle="dark-content" />
-          <Text>Hello world</Text>
-          <Button title="add items" onPress={this._addItem} />
-          <Button title="Dummy" onPress={this.dummy} />
-        </Content>
-      </Container>
+      //   <Content
+      //     contentContainerStyle={{
+      //       alignItems: "center",
+      //       flex: 1,
+      //       justifyContent: "center"
+      //     }}
+      //   >
+      //     <StatusBar barStyle="dark-content" />
+      //     <Text>Hello world</Text>
+      //     <Button title="add items" onPress={this._addItem} />
+      //     <Button title="Dummy" onPress={this.dummy} />
+      //   </Content>
+      // </Container>
+      <View style={styles.container}>
+        <Text>Explore Foods</Text>
+      </View>
     );
   }
 }

@@ -1,8 +1,9 @@
-import { createBottomTabNavigator } from "react-navigation";
+import { createBottomTabNavigator, createStackNavigator } from "react-navigation";
 
 import Explore from "../afterauth/Explore";
 import Restaurants from "../afterauth/Restaurants";
 import Cart from "../afterauth/Cart";
+
 
 export default createBottomTabNavigator(
   {

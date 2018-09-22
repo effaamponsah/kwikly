@@ -35,7 +35,9 @@ export default class Cards extends React.Component {
       "2": "Cape Coast Stadium",
       "3": "Amamoma"
     };
-
+    _pressed = () => {
+      console.log("Hello world");
+    };
     return (
       <Card>
         <CardItem>

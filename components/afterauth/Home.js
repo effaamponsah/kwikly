@@ -7,7 +7,7 @@ import TabNav from "../navigation/TabNav";
 
 class Home extends React.Component {
   static navigationOptions = {
-    header: null
+  ///  header: null
   };
   constructor(props) {
     super(props);
