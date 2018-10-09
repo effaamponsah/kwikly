@@ -51,49 +51,31 @@ export default class Welcome extends Component {
           <View style={styles.container}>
             <View style={{ marginBottom: 40, marginTop: 40 }}>
               {this.state.fontLoaded ? (
-                <Text style={styles.hello}>Hello</Text>
+                <Text style={styles.hello}>kwikly</Text>
               ) : null}
             </View>
+          </View>
+        
+          <View style={{ height: 120, backgroundColor: "white", }}>
 
-            <View
-              style={{
-                marginTop: 30
-              }}
-            >
-              {this.state.fontLoaded ? (
+            <View style={styles.signUpbtn}>
+              <TouchableOpacity onPress={() => this._onSignUpPress()}>
                 <Text
-                  style={{ color: "white", fontSize: 30, fontFamily: "Abril" }}
+                  style={{
+                    color: "white"
+                  }}
                 >
-                  Welcome!
-                </Text>
-              ) : null}
-            </View>
-
-            <View style={{ marginLeft: 45, marginRight: 45 }}>
-              {this.state.fontLoaded ? (
-                <Text style={styles.introtxt}>
-                  We are a Creative agency which wishes to change the world by
-                  automating simple tasks.
-                </Text>
-              ) : null}
-            </View>
-          </View>
-
-          <View style={styles.signUpbtn}>
-            <TouchableOpacity onPress={() => this._onSignUpPress()}>
-              <Text
-                style={{
-                  color: "#000"
-                }}
-              >
-                Sign Up
+                  Sign Up
               </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.loginbtn}>
-            <TouchableOpacity onPress={() => this._onLoginPress()}>
-              <Text style={{ color: "white" }}>Log In</Text>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.loginbtn}>
+              <TouchableOpacity onPress={() => this._onLoginPress()}>
+                <Text style={{ color: "black" }}>Log In</Text>
+              </TouchableOpacity>
+            </View>
+
+
           </View>
         </ImageBackground>
       </View>
@@ -113,12 +95,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     borderRadius: 4,
-    backgroundColor: "#fff",
+    backgroundColor: "#431019",
     paddingLeft: 60,
     paddingRight: 60,
     paddingTop: 15,
     paddingBottom: 15,
-    width: 180
+    width: 180,
+    marginTop: 10
+
   },
   loginbtn: {
     marginTop: 30,
@@ -135,7 +119,9 @@ const styles = StyleSheet.create({
   },
   hello: {
     color: "white",
-    fontSize: 70,
+    fontSize: 60,
     fontFamily: "Sans"
   }
+
+  
 });
