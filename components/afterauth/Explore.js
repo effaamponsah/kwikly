@@ -1,130 +1,91 @@
-import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-  Button,
-  StatusBar
-} from "react-native";
+import React, {Component} from 'react';
+import {Image, TouchableOpacity} from 'react-native';
 import {
   Container,
   Header,
-  Content,
+  View,
+  DeckSwiper,
+  Card,
+  CardItem,
+  Thumbnail,
+  Text,
   Left,
-  Icon,
   Body,
-  Title,
-  Right,
-  Badge
-} from "native-base";
+  Icon
+} from 'native-base';
+const cards = [
+  {
+    text: 'Tasty Chef',
+    name: 'Salad',
+    image: require('../../assets/images/f1.png')
+  },
+  {
+    text: 'McCoy',
+    name: 'Pizza',
+    image: require('../../assets/images/f2.png')
+  },
 
-class Explore extends React.Component {
+  {
+    text: 'Kappochino',
+    name: 'Pizza',
+    image: require('../../assets/images/f3.png')
+  },
+  {
+    text: 'KFC',
+    name: 'Chicken and Potato Chips',
+    image: require('../../assets/images/f4.png')
+  },
+
+  
+
+
+];
+export default class Explore extends React.Component {
+
   static navigationOptions = {
-    // header: null
-    title: "Explore",
     tabBarIcon: ({ tintColor }) => (
       <Icon name="search" style={{ color: tintColor }} />
-    ),
-    headerLeft: null
-  };
+    )
+  } 
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      fontLoaded: false,
-      items: 0
-    };
-  }
-
-  _onMenuPress = () => {
-    this.props.navigation.toggleDrawer();
-    console.log("Drawer btn pressed");
-  };
-
-  _onCartIconPress = () => {
-    this.props.navigation.navigate("Cart");
-    // this.props.navigation.navigate("Cart");
-    console.log("Cart btn pressed");
-  };
-
-  _addItem = () => {
-    this.setState({
-      items: this.state.items + 1
-    });
-  };
-
-  dummy = () => {
-    this.props.navigation.navigate("Dummy");
-  };
-  async componentWillMount() {
-    await Expo.Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
-    });
-    this.setState({ fontLoaded: true });
-  }
   render() {
     return (
-      // <Container>
-      //   <Header style={{ backgroundColor: "#fff", height: 70, paddingTop: 15 }}>
-      //     <Left>
-      //       <Icon name="menu" onPress={this._onMenuPress} />
-      //     </Left>
-
-      //     <Body
-      //       style={{
-      //         flex: 1,
-      //         alignItems: "center",
-      //         justifyContent: "center",
-      //         alignContent: "center"
-      //       }}
-      //     >
-      //       {/* <Title>Hello</Title> */}
-      //       {this.state.fontLoaded ? (
-      //         <Title style={{ color: "#000" }}>Header</Title>
-      //       ) : (
-      //         <ActivityIndicator size="small" />
-      //       )}
-      //     </Body>
-
-      //     <Right style={{ marginRight: 10 }}>
-      //       {this.state.items ? (
-      //         <Badge>
-      //           <Text>{this.state.items}</Text>
-      //         </Badge>
-      //       ) : null}
-
-      //       <Icon name="basket" onPress={this._onCartIconPress} />
-      //     </Right>
-      //   </Header>
-
-      //   <Content
-      //     contentContainerStyle={{
-      //       alignItems: "center",
-      //       flex: 1,
-      //       justifyContent: "center"
-      //     }}
-      //   >
-      //     <StatusBar barStyle="dark-content" />
-      //     <Text>Hello world</Text>
-      //     <Button title="add items" onPress={this._addItem} />
-      //     <Button title="Dummy" onPress={this.dummy} />
-      //   </Content>
-      // </Container>
-      <View style={styles.container}>
-        <Text>Explore Foods</Text>
-      </View>
+      <Container>
+        <View>
+          <DeckSwiper
+            dataSource={cards}
+            renderItem={item => <Card style={{
+            elevation: 3, height: 47
+            
+          }}>
+            <CardItem>
+              <Left>
+                <Thumbnail source={item.image}/>
+                <Body>
+                <Text>{item.name}</Text>
+                    <Text note>{item.text}</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem cardBody>
+              <Image
+                style={{
+                height: 350,
+                flex: 1
+              }}
+                source={item.image}/>
+            </CardItem>
+            <CardItem>
+                  <TouchableOpacity style={{flexDirection: 'row', flex: 1 }} onPress={console.log('order pressed')}>
+            <Icon name="cart" style={{
+              color: '#ED4A6A'
+            }}/>
+            <Text>Order</Text>
+            </TouchableOpacity >
+            </CardItem>
+          </Card>}/>
+        </View>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "center"
-  }
-});
-export default Explore;

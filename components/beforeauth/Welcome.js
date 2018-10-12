@@ -5,8 +5,8 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
-  StatusBar,
-  ActivityIndicator
+  StatusBar, 
+  ActivityIndicator,
 } from "react-native";
 
 export default class Welcome extends Component {
@@ -56,7 +56,7 @@ export default class Welcome extends Component {
             </View>
           </View>
         
-          <View style={{ height: 120, backgroundColor: "white", }}>
+          <View style={{ height: 140, backgroundColor: "white", }}>
 
             <View style={styles.signUpbtn}>
               <TouchableOpacity onPress={() => this._onSignUpPress()}>
@@ -71,7 +71,7 @@ export default class Welcome extends Component {
             </View>
             <View style={styles.loginbtn}>
               <TouchableOpacity onPress={() => this._onLoginPress()}>
-                <Text style={{ color: "black" }}>Log In</Text>
+                <Text style={{ color: "#44111a" }}>Log In</Text>
               </TouchableOpacity>
             </View>
 
