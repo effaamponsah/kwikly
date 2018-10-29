@@ -46,14 +46,14 @@ export default class Explore extends React.Component {
   render() {
     return (
       <Container>
-        <View>
+        <View style={{marginTop: 20}}> 
           <DeckSwiper
             dataSource={cards}
             renderItem={item => (
               <Card
                 style={{
                   elevation: 3,
-                  height: 47
+                  height: 500
                 }}
               >
                 <CardItem>

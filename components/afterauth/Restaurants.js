@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity
+} from "react-native";
 import { Card, CardItem, Left, Thumbnail, Body, Icon } from "native-base";
 import { ResCard } from "./ResCards";
 import Home from "./Home";
@@ -7,7 +13,8 @@ import Cards from "./Cards";
 
 class Restaurants extends React.Component {
   static navigationOptions = {
-    title: "Restaurants",
+     title: "Restaurants",
+    //header: null,
     tabBarIcon: ({ tintColor }) => (
       <Icon name="restaurant" style={{ color: tintColor }} />
     )
@@ -24,12 +31,16 @@ class Restaurants extends React.Component {
     return (
       <ScrollView style={{ marginLeft: 8, marginRight: 4 }}>
         {this.state.content.map(items => (
-          <Cards
-            key={items.id}
-            imageSource={items.id}
-            resName={items.id}
-            loc={items.id}
-          />
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Menu")}
+          >
+            <Cards
+              key={items.id}
+              imageSource={items.id}
+              resName={items.id}
+              loc={items.id}
+            />
+          </TouchableOpacity>
         ))}
       </ScrollView>
     );
