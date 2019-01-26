@@ -5,7 +5,8 @@ import {
   StatusBar,
   StyleSheet,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 
 class SignUp extends Component {
@@ -22,8 +23,22 @@ class SignUp extends Component {
     };
   }
 
-  _onSigUpPress = () => {
-    console.log("Sign Up Successfull");
+  _onSigUpPress = (email, password, name) => {
+    if (
+      // simple login check
+      this.state.email == "" ||
+      this.state.name == "" ||
+      this.state.password == ""
+    ) {
+      Alert.alert("Error", "All fields are required");
+    } else {
+      // you now have the email, name and password
+      // do what ever shit you want
+      console.log("Name is ", name);
+      console.log("Email is ", email);
+      console.log("Password is ", password);
+      console.log("Sign Up Successfull");
+    }
   };
 
   _logInNav = () => {
@@ -36,6 +51,7 @@ class SignUp extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" hidden={false} />
 
+        {/* Name field */}
         <View style={styles.inputbox}>
           <TextInput
             style={styles.formPlace}
@@ -78,7 +94,16 @@ class SignUp extends Component {
         </View>
 
         {/* Sign Up Button */}
-        <TouchableOpacity onPress={this._onSigUpPress}>
+        {/* <TouchableOpacity onPress={this._onSigUpPress}> */}
+        <TouchableOpacity
+          onPress={() =>
+            this._onSigUpPress(
+              this.state.email,
+              this.state.password,
+              this.state.name
+            )
+          }
+        >
           <View style={styles.subtn}>
             <View style={{ flexDirection: "row" }}>
               {/* <Icon name="logo-facebook" style={{ color: "#0d00b9" }} /> */}

@@ -13,7 +13,7 @@ import Cards from "./Cards";
 
 class Restaurants extends React.Component {
   static navigationOptions = {
-     title: "Restaurants",
+    title: "Restaurants",
     //header: null,
     tabBarIcon: ({ tintColor }) => (
       <Icon name="restaurant" style={{ color: tintColor }} />
@@ -27,22 +27,29 @@ class Restaurants extends React.Component {
     };
   }
 
+  componentWillMount() {
+   
+  }
+
   render() {
     return (
-      <ScrollView style={{ marginLeft: 8, marginRight: 4 }}>
-        {this.state.content.map(items => (
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Menu")}
-          >
-            <Cards
-              key={items.id}
-              imageSource={items.id}
-              resName={items.id}
-              loc={items.id}
-            />
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      // <ScrollView style={{ marginLeft: 8, marginRight: 4 }}>
+      //   {this.state.content.map(items => (
+      //     <TouchableOpacity
+      //       onPress={() => this.props.navigation.navigate("Menu")}
+      //     >
+      //       <Cards
+      //         key={items.id}
+      //         imageSource={items.id}
+      //         resName={items.id}
+      //         loc={items.id}
+      //       />
+      //     </TouchableOpacity>
+      //   ))}
+      // </ScrollView>
+      <View>
+        <Text>Hello</Text>
+      </View>
     );
   }
 }

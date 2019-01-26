@@ -5,7 +5,8 @@ import {
   StatusBar,
   TouchableOpacity,
   StyleSheet,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
 import { Icon } from "native-base";
 
@@ -23,19 +24,28 @@ class Login extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: "",
+      pass: ""
+    };
   }
 
   _onFbPress = () => {
     console.log("Facebook Button");
   };
 
-  _onLoginPress = () => {
+  _onLoginPress = (email, pass) => {
     console.log("Login Btn Pressed");
-    this.props.navigation.navigate("Home");
+    if (this.state.email == "" || this.state.pass == "") {
+      Alert.alert("Error", "Please all fields are required");
+    } else {
+      console.log("Email ooo", email);
+      console.log("Password ooo", pass);
+      this.props.navigation.navigate("Home");
+    }
   };
 
-  c
+  c;
   render() {
     return (
       <View style={styles.container}>
@@ -82,12 +92,14 @@ class Login extends React.Component {
             secureTextEntry={true}
             returnKeyType="go"
             underlineColorAndroid="transparent"
-            onChangeText={password => this.setState({ password })}
+            onChangeText={pass => this.setState({ pass })}
           />
         </View>
 
         {/* Login  Btn*/}
-        <TouchableOpacity onPress={this._onLoginPress}>
+        <TouchableOpacity
+          onPress={() => this._onLoginPress(this.state.email, this.state.pass)}
+        >
           <View style={styles.fbbtn}>
             <View style={{ flexDirection: "row" }}>
               {/* <Icon name="logo-facebook" style={{ color: "#0d00b9" }} /> */}
