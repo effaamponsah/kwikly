@@ -5,8 +5,9 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
-  StatusBar, 
+  StatusBar,
   ActivityIndicator,
+  Animated
 } from "react-native";
 
 export default class Welcome extends Component {
@@ -19,15 +20,26 @@ export default class Welcome extends Component {
     this.state = {
       fontLoaded: false
     };
+    this.opacity = new Animated.Value(0);
+    this.height = new Animated.Value(0);
   }
 
   async componentWillMount() {
-    await Expo.Font.loadAsync({
-      Sans: require("../../assets/fonts/SourceSansPro-Bold.ttf"),
-      Montserrat: require("../../assets/fonts/Montserrat-Medium.ttf"),
-      Abril: require("../../assets/fonts/AbrilFatface-Regular.ttf")
-    });
+    // await Expo.Font.loadAsync({
+    //   Sans: require("../../assets/fonts/SourceSansPro-Bold.ttf"),
+    //   Montserrat: require("../../assets/fonts/Montserrat-Medium.ttf"),
+    //   Abril: require("../../assets/fonts/AbrilFatface-Regular.ttf")
+    // });
     this.setState({ fontLoaded: true });
+    Animated.timing(this.height, {
+      toValue: 140,
+      duration: 300
+    }).start(() =>
+      Animated.timing(this.opacity, {
+        toValue: 1,
+        duration: 1000
+      }).start()
+    );
   }
 
   _onSignUpPress() {
@@ -49,24 +61,30 @@ export default class Welcome extends Component {
         >
           <StatusBar hidden={true} />
           <View style={styles.container}>
-            <View style={{ marginBottom: 40, marginTop: 40 }}>
+            <Animated.View
+              style={{ marginBottom: 40, marginTop: 40, opacity: this.opacity }}
+            >
               {this.state.fontLoaded ? (
                 <Text style={styles.hello}>kwikly</Text>
               ) : null}
-            </View>
+            </Animated.View>
           </View>
-        
-          <View style={{ height: 140, backgroundColor: "white", }}>
 
-            <View style={styles.signUpbtn}>
-              <TouchableOpacity onPress={() => this._onSignUpPress()}>
+          <Animated.View
+            style={{ height: this.height, backgroundColor: "white" }}
+          >
+            <View>
+              <TouchableOpacity
+                style={styles.signUpbtn}
+                onPress={() => this._onSignUpPress()}
+              >
                 <Text
                   style={{
                     color: "white"
                   }}
                 >
                   Sign Up
-              </Text>
+                </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.loginbtn}>
@@ -74,9 +92,7 @@ export default class Welcome extends Component {
                 <Text style={{ color: "#44111a" }}>Log In</Text>
               </TouchableOpacity>
             </View>
-
-
-          </View>
+          </Animated.View>
         </ImageBackground>
       </View>
     );
@@ -102,7 +118,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     width: 180,
     marginTop: 10
-
   },
   loginbtn: {
     marginTop: 30,
@@ -114,14 +129,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     marginTop: 20,
-    fontFamily: "Montserrat",
+    fontFamily: "mont",
     lineHeight: 30
   },
   hello: {
     color: "white",
     fontSize: 60,
-    fontFamily: "Sans"
+    fontFamily: "sans"
   }
-
-  
 });

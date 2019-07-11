@@ -6,10 +6,12 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  Alert
+  Alert,
+  AsyncStorage
 } from "react-native";
 import { Icon } from "native-base";
-
+import { colors } from "../../utils/constants";
+import NavigationService from "../navigation/NavigationService";
 class Login extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -28,6 +30,7 @@ class Login extends React.Component {
       email: "",
       pass: ""
     };
+    this.resetPress = this.resetPress.bind(this);
   }
 
   _onFbPress = () => {
@@ -35,17 +38,16 @@ class Login extends React.Component {
   };
 
   _onLoginPress = (email, pass) => {
-    console.log("Login Btn Pressed");
-    if (this.state.email == "" || this.state.pass == "") {
-      Alert.alert("Error", "Please all fields are required");
-    } else {
-      console.log("Email ooo", email);
-      console.log("Password ooo", pass);
-      this.props.navigation.navigate("Home");
-    }
+    // console.log("Login Btn Pressed");
+    // if (this.state.email == "" || this.state.pass == "") {
+    //   Alert.alert("Error occurred", "Please all fields are required");
+    // } else {
+    AsyncStorage.setItem("userToken", "abc");
+    this.props.navigation.navigate("HomeStack");
   };
-
-  c;
+  resetPress() {
+    this.props.navigation.navigate("Reset");
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -121,6 +123,7 @@ class Login extends React.Component {
         </View>
 
         <TouchableOpacity
+          onPress={this.resetPress}
           style={{
             justifyContent: "center",
             alignItems: "center",
@@ -160,7 +163,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     padding: 12,
-    backgroundColor: "#0d00b9",
+    backgroundColor: colors.primaryBlue,
     alignItems: "center",
     borderRadius: 5
   }

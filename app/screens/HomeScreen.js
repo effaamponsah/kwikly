@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Drawer from "../navigation/Drawer";
-import TabNav from "../navigation/TabNav";
-import { Icon } from "native-base";
 
-// import Drawer from "../navigation/MainNav";
-
-class Home extends React.Component {
+export default class HomeScreen extends Component {
   static navigationOptions = {
-    title: "Kwikly",
-   
+    title: "Home"
   };
   constructor(props) {
     super(props);
@@ -17,15 +11,18 @@ class Home extends React.Component {
   }
 
   render() {
-    return <TabNav />;
+    return (
+      <View style={styles.container}>
+        <Text> This is the home </Text>
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     flex: 1,
+    alignItems: "center",
     justifyContent: "center"
   }
 });
-export default Home;

@@ -13,6 +13,7 @@ import {
   Body,
   Icon
 } from "native-base";
+import { colors } from "../../utils/constants";
 const cards = [
   {
     text: "Tasty Chef",
@@ -38,15 +39,21 @@ const cards = [
 ];
 export default class Explore extends React.Component {
   static navigationOptions = {
-    tabBarIcon: ({ tintColor }) => (
-      <Icon name="search" style={{ color: tintColor }} />
+    title: "Home",
+    headerLeft: (
+      <TouchableOpacity
+        style={{ marginLeft: 15 }}
+        onPress={() => console.log("I am here")}
+      >
+        <Icon name="person" style={{ color: colors.grey }} />
+      </TouchableOpacity>
     )
   };
 
   render() {
     return (
       <Container>
-        <View style={{marginTop: 20}}> 
+        <View>
           <DeckSwiper
             dataSource={cards}
             renderItem={item => (

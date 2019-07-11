@@ -1,35 +1,47 @@
-import { createBottomTabNavigator, createStackNavigator, } from "react-navigation";
-import React from 'react';
+import {
+  createBottomTabNavigator,
+  createStackNavigator
+} from "react-navigation";
+import React from "react";
 import Explore from "../afterauth/Explore";
-import Restaurants from "../afterauth/Restaurants";
-import Cart from "../afterauth/Cart";
-import Menu from "../afterauth/Menu";
-import ResComp from "../afterauth/ResComp";
 import { Icon } from "native-base";
-
-
-export const RestaurantScreen = createStackNavigator({
-  Restaurants: Restaurants,
-  Menu: Menu
-}
-)
-
+import { colors } from "../../utils/constants";
+import { RestaurantScreen } from "./RestaurantStack";
+import { CartStack } from "./CartStack";
+import HomeScreen from "../../app/screens/HomeScreen";
+import { HomeStack } from "./HomeStack";
 
 export default createBottomTabNavigator(
   {
-    Explore: Explore,
+    Home: {
+      screen: HomeStack,
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="search" style={{ color: tintColor }} />
+        )
+      })
+    },
     Restaurants: {
       screen: RestaurantScreen,
-      icon: <Icon name='git-merge'/>
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="home" style={{ color: tintColor }} />
+        )
+      })
     },
-    Cart: Cart
+    Basket: {
+      screen: CartStack,
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="basket" style={{ color: tintColor }} />
+        )
+      })
+    }
   },
   {
     tabBarOptions: {
-      scrollEnabled: true,
-      activeTintColor: "red",
-      showIcon: true,
-      showLabel: true
+      activeTintColor: colors.red,
+      inactiveTintColor: colors.grey
     }
   }
 );

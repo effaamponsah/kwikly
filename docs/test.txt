@@ -1,0 +1,11 @@
+All components must have camelCase
+
+- This is a simple food ordering app that allows people to order food from
+nearby restaurants and pay for them via momo or by delivery
+
+- Users get the chance to reorder previous order
+- Leave a comment for the food or rate it.
+- Users can also order the food and pick it up later
+- Only registered users are allowed to use the system.
+- Add google login to it
+- Receipts are sent to the email provided
